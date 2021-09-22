@@ -12,20 +12,24 @@
   </thead>
 
   <tbody>
-    <% @products.each do |product| %>
+
       <tr>
-        <td><%= product.name %></td><br>
-        <td><%= product.price %></td>
+        <td><%= @product.name %></td><br>
+        <td><%= @product.price %></td>
       </tr>
-    <% end %>
+
   </tbody>
 </table>
 
 <br>
 
 <div>
-  <%= form_tag products_path, method: :get do %>
-    <%= select_tag(:quantity, options_for_select([[1], [2], [3], [4]])) %>
-    <%= submit_tag "送出", name: nil, class: "btn btn-primary" %>
-  <% end %>
+
+    <%= form_tag orders_path, method: :post do %>
+      <%= hidden_field_tag(:name, @product.name) %>
+      <%= hidden_field_tag(:price, @product.price) %>
+      <%= select_tag(:quantity, options_for_select([[1], [2], [3], [4]])) %>
+      <%= submit_tag "送出", name: nil, class: "btn btn-primary" %>
+    <% end %>
+
 </div>
